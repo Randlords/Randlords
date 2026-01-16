@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randlords Development | Forging Legacy. Crafting Excellence.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+    <style>
+        :root {
+            --charcoal: #1A1A1A;
+            --sand: #F5F1E8;
+            --gold: #D4AF37;
+            --gold-light: #E8C766;
+            --gold-dark: #B8941F;
+            --green: #2A5C3F;
+            --white: #FFFFFF;
+            --gray-dark: #2D2D2D;
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--charcoal);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        p, .body-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.7)), 
+                        url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            color: var(--sand);
+            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--gold);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        .scroll-text {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* The Vision Section */
+        .vision-section {
+            background-color: var(--charcoal);
+            padding: 100px 0;
+        }
+
+        .vision-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .vision-left, .vision-right {
+            flex: 1;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .vision-left {
+            background: url('https://images.unsplash.com/photo-1567496898660-47c37a6b4a0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .vision-right {
+            background: url('https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .vision-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .vision-left:hover .vision-overlay, .vision-right:hover .vision-overlay {
+            opacity: 0.4;
+        }
+
+        .vision-text {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+            z-index: 2;
+        }
+
+        .vision-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        /* Development Showcase */
+        .showcase-section {
+            background-color: var(--gray-dark);
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--sand);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+
+        .site-plan-container {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--gray-dark) 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .site-plan {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 20%);
+        }
+
+        .cluster {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+
+        .cluster:hover {
+            background-color: rgba(212, 175, 55, 0.3);
+            border-color: var(--gold);
+            transform: scale(1.2);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .cluster-name {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--charcoal);
+            color: var(--gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: var(--transition);
+            border: 1px solid var(--gold);
+        }
+
+        .cluster:hover .cluster-name {
+            opacity: 1;
+            top: -50px;
+        }
+
+        .cluster-pin {
+            width: 10px;
+            height: 10px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        .cluster-info {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background-color: rgba(26, 26, 26, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            max-width: 400px;
+        }
+
+        /* Home Design Gallery */
+        .gallery-section {
+            background-color: var(--charcoal);
+            padding: 100px 0;
+        }
+
+        .gallery-container {
+            position: relative;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 30px 0 60px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--charcoal);
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .gallery-scroll::-webkit-scrollbar-track {
+            background: var(--charcoal);
+            border-radius: 10px;
+        }
+
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background-color: var(--gold);
+            border-radius: 10px;
+        }
+
+        .gallery-item {
+            min-width: 400px;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.95) 0%, transparent 100%);
+            padding: 30px;
+            color: var(--white);
+        }
+
+        .price-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background-color: var(--gold);
+            color: var(--charcoal);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Call-to-Action Section */
+        .cta-section {
+            background: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), 
+                        url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 100px 0;
+        }
+
+        .cta-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-form {
+            background-color: rgba(45, 45, 45, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--sand);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px 20px;
+            background-color: rgba(26, 26, 26, 0.7);
+            border: 1px solid rgba(245, 241, 232, 0.2);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--charcoal);
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .price-portfolio-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .price-portfolio-link a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .price-portfolio-link a:hover {
+            border-bottom: 1px solid var(--gold);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--charcoal);
+            padding: 60px 0 30px 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--gold);
+        }
+
+        .footer-links a {
+            color: var(--sand);
+            margin-left: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            text-align: center;
+            color: rgba(245, 241, 232, 0.5);
+            font-size: 0.9rem;
+            padding-top: 30px;
+            border-top: 1px solid rgba(245, 241, 232, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .vision-container {
+                flex-direction: column;
+            }
+            
+            .vision-left, .vision-right {
+                width: 100%;
+                height: 400px;
+            }
+            
+            .logo {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-item {
+                min-width: 300px;
+                height: 400px;
+            }
+            
+            .contact-form {
+                padding: 40px 30px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin-top: 30px;
+            }
+            
+            .footer-links a {
+                margin: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="section hero" id="home">
+        <div class="container hero-content">
+            <h1 class="logo">RANDLORDS DEVELOPMENT</h1>
+            <p class="tagline">Forging Legacy. Crafting Excellence.</p>
+            <a href="#vision" class="btn">Explore Our Vision</a>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToSection('vision')">
+            <span class="scroll-text">Scroll to Explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- The Vision Section -->
+    <section class="section vision-section" id="vision">
+        <div class="container vision-container">
+            <div class="vision-left">
+                <div class="vision-overlay"></div>
+                <div class="vision-text">
+                    <h2>Historic Legacy</h2>
+                    <p class="body-text">Drawing inspiration from the Randlords era of ambition and grandeur, we honor a century of architectural excellence.</p>
+                </div>
+            </div>
+            <div class="vision-right">
+                <div class="vision-overlay"></div>
+                <div class="vision-text">
+                    <h2>Modern Excellence</h2>
+                    <p class="body-text">Contemporary designs that redefine luxury living, blending cutting-edge technology with timeless craftsmanship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Showcase -->
+    <section class="section showcase-section" id="showcase">
+        <div class="container">
+            <h2 class="section-title">Thirteen Distinct Clusters. One Uncompromising Standard.</h2>
+            <div class="site-plan-container">
+                <div class="site-plan" id="sitePlan">
+                    <!-- Clusters will be added via JavaScript -->
+                </div>
+                <div class="cluster-info">
+                    <h3 style="color: var(--gold); margin-bottom: 10px;">Interactive Site Plan</h3>
+                    <p class="body-text">Hover over each cluster to explore our thirteen meticulously designed communities, each with its own unique character and architectural language.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home Design Gallery -->
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Signature Residences</h2>
+            <div class="gallery-container">
+                <div class="gallery-scroll" id="galleryScroll">
+                    <!-- Gallery items will be added via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="section cta-section" id="contact">
+        <div class="container cta-container">
+            <div class="contact-form">
+                <h2 class="form-title">Request Your Private Portfolio</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Message (Optional)" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Request the Detailed Price Portfolio</button>
+                </form>
+                <div class="price-portfolio-link">
+                    <p>Or view our <a href="pricelist.html">Online Price Portfolio →</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">RANDLORDS</div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#vision">Vision</a>
+                    <a href="#showcase">Clusters</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="pricelist.html">Pricing</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Randlords Development. All rights reserved. | Crafting legacy properties for discerning individuals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Clusters data for the site plan
+        const clusters = [
+            { name: "The Jameson Cluster", top: "20%", left: "15%" },
+            { name: "The Barnato Cluster", top: "40%", left: "25%" },
+            { name: "The Rhodes Cluster", top: "15%", left: "40%" },
+            { name: "The Beit Cluster", top: "60%", left: "20%" },
+            { name: "The Oppenheimer Cluster", top: "35%", left: "50%" },
+            { name: "The Robinson Cluster", top: "70%", left: "35%" },
+            { name: "The Eckstein Cluster", top: "25%", left: "65%" },
+            { name: "The Rudd Cluster", top: "50%", left: "70%" },
+            { name: "The Joel Cluster", top: "75%", left: "60%" },
+            { name: "The Albu Cluster", top: "40%", left: "80%" },
+            { name: "The Phillips Cluster", top: "10%", left: "75%" },
+            { name: "The Farrar Cluster", top: "65%", left: "80%" },
+            { name: "The Neumann Cluster", top: "85%", left: "45%" }
+        ];
+
+        // Gallery items data
+        const galleryItems = [
+            { 
+                title: "Signature Residence", 
+                size: "288 sqm", 
+                price: "R5.5 million",
+                image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            { 
+                title: "Grand Living Area", 
+                size: "Open Plan", 
+                price: "Premium Finish",
+                image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            { 
+                title: "Master Suite", 
+                size: "65 sqm", 
+                price: "Luxury En-suite",
+                image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            { 
+                title: "Gourmet Kitchen", 
+                size: "Premium Appliances", 
+                price: "Italian Marble",
+                image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            { 
+                title: "Outdoor Entertaining", 
+                size: "Patio & Pool", 
+                price: "Landscaped Garden",
+                image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            { 
+                title: "Estate Grounds", 
+                size: "500 sqm Stand", 
+                price: "Secure Community",
+                image: "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        // Initialize site plan clusters
+        function initSitePlan() {
+            const sitePlan = document.getElementById('sitePlan');
+            
+            clusters.forEach(cluster => {
+                const clusterElement = document.createElement('div');
+                clusterElement.className = 'cluster';
+                clusterElement.style.top = cluster.top;
+                clusterElement.style.left = cluster.left;
+                
+                clusterElement.innerHTML = `
+                    <div class="cluster-pin"></div>
+                    <span class="cluster-name">${cluster.name}</span>
+                `;
+                
+                sitePlan.appendChild(clusterElement);
+            });
+        }
+
+        // Initialize gallery
+        function initGallery() {
+            const galleryScroll = document.getElementById('galleryScroll');
+            
+            galleryItems.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3>${item.title}</h3>
+                        <p class="body-text">${item.size}</p>
+                    </div>
+                    ${index === 0 ? '<div class="price-badge">From ' + item.price + '</div>' : ''}
+                `;
+                
+                galleryScroll.appendChild(galleryItem);
+            });
+        }
+
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your request. Our sales team will contact you shortly with the detailed price portfolio.');
+            this.reset();
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initSitePlan();
+            initGallery();
+            
+            // Add scroll animation triggers
+            const sections = document.querySelectorAll('.section');
+            
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
